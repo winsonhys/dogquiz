@@ -9,7 +9,7 @@ class DogService {
     }
     
     func fetchAllBreeds() async throws -> BreedsResponse {
-        return try await withCheckedThrowingContinuation { continuation in
+        let response = try await withCheckedThrowingContinuation { continuation in
             provider.request(.getAllBreeds) { result in
                 switch result {
                 case .success(let response):
@@ -24,6 +24,7 @@ class DogService {
                 }
             }
         }
+        return response
     }
     
     func fetchRandomImages(count: Int = 3) async throws -> RandomImagesResponse {
