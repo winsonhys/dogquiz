@@ -1,5 +1,5 @@
 //
-//  QuizService.swift
+//  DogBreedService.swift
 //  dogquiz
 //
 //  Created by Winson Heng on 9/3/25.
@@ -7,10 +7,43 @@
 
 import Foundation
 
-class QuizService {
+
+class DogBreedService {
+    
+    static let shared = DogBreedService()
+    var _allBreeds: [Breed] = []
+    
+    private init(){}
+       
     private let client = NetworkClient.shared.client
     
-    func loadAllBreeds() async -> [Breed] {
+    func getRandomBreeds(count: Int, excludes: [Breed]) -> [Breed] {
+        guard !_allBreeds.isEmpty else {fatalError("Please call initBreeds() before calling this function")}
+        var randomBreeds: Set<Breed> = Set()
+        let excludeSet = Set(excludes)
+        while randomBreeds.count < count {
+            // This will never be nil.
+            let randomBreed = _allBreeds.randomElement()!
+            // Ensure that there are no repeated selections
+            if excludeSet.contains(randomBreed) || randomBreeds.contains(randomBreed) {
+               continue
+            }
+            randomBreeds.insert(randomBreed)
+            
+        }
+        return Array(randomBreeds)
+        
+        
+    }
+    
+    func initBreeds() async {
+        if _allBreeds.count > 0 {
+            return
+        }
+        _allBreeds = await loadAllBreeds()
+    }
+    
+    private func loadAllBreeds() async -> [Breed] {
         
         do {
             let response = try await client.listAllBreeds()
@@ -40,6 +73,4 @@ class QuizService {
             
         }.flatMap { $0 }
     }
-    
-    
 }

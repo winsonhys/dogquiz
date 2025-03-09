@@ -9,31 +9,30 @@ import SwiftUI
 
 
 struct QuestionModel {
-    let dogImageUrl: String
+    private let breedService = DogBreedService.shared
+    let dogImageUrl: URL
     let correctDogBreed: Breed
     let alternateDogBreedSelections: [Breed]
     
-    init(dogImageUrl: String, alternateDogBreedSelections: [Breed]) {
+    init(dogImageUrl: URL) {
         self.dogImageUrl = dogImageUrl
-        let correctDogBreedFromUrl = QuestionModel.getBreedFromImageUrl(dogImageUrl)
         
+        let correctDogBreedFromUrl = Utils.getBreedFromImageUrlString(dogImageUrl.absoluteString)
         self.correctDogBreed = correctDogBreedFromUrl
-        self.alternateDogBreedSelections = alternateDogBreedSelections
+        
+        self.alternateDogBreedSelections = breedService.getRandomBreeds(count: 3, excludes: [self.correctDogBreed])
     }
     
     func isCorrectAnswer(selectedBreed: Breed) -> Bool {
         return selectedBreed == correctDogBreed
     }
     
-    static func getBreedFromImageUrl(_ url: String) -> Breed {
-        let components = url.components(separatedBy: "/breeds/")
-        guard components.count > 1 else { return Breed() }
-        
-        let breedPath = components[1]
-        let breedComponents = breedPath.components(separatedBy: "/")
-        guard breedComponents.count > 0 else { return Breed() }
-        
-        return Breed(mainBreed: breedComponents[0])
+    func getRandomBreedOrder() -> [Breed] {
+        var breeds = alternateDogBreedSelections + [correctDogBreed]
+        breeds.shuffle()
+        return breeds
     }
+    
+    
     
 }

@@ -11,9 +11,7 @@ import OpenAPIURLSession
 @main
 struct dogquizApp: App {
     
-    
     var body: some Scene {
-        
         WindowGroup {
             HomeView()
         }

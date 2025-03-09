@@ -38,6 +38,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		926441742D7DD8F800AB0A14 /* New Folder */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "New Folder";
+			sourceTree = "<group>";
+		};
 		92B9E8922D79ECEC0017EDEE /* dogquiz */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = dogquiz;
@@ -95,6 +100,7 @@
 		92B9E8872D79ECEC0017EDEE = {
 			isa = PBXGroup;
 			children = (
+				926441742D7DD8F800AB0A14 /* New Folder */,
 				92B9E8922D79ECEC0017EDEE /* dogquiz */,
 				92B9E8A42D79ECED0017EDEE /* dogquizTests */,
 				92B9E8AE2D79ECED0017EDEE /* dogquizUITests */,
@@ -130,6 +136,7 @@
 				926441242D7D77E400AB0A14 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				926441742D7DD8F800AB0A14 /* New Folder */,
 				92B9E8922D79ECEC0017EDEE /* dogquiz */,
 			);
 			name = dogquiz;

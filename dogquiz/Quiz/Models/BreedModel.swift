@@ -5,14 +5,14 @@
 //  Created by Winson Heng on 9/3/25.
 //
 
-struct Breed: Equatable {
+struct Breed: Equatable, Hashable, Identifiable {
     let mainBreed: String
     let subBreed: String
     
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.mainBreed == rhs.mainBreed &&
-        lhs.subBreed == rhs.subBreed
-    }
+    // I can do this because this combination is unique.
+    var id: String { "\(mainBreed)-\(subBreed)" }
+    
+    
     init(mainBreed: String = "", subBreed: String  = "") {
         self.mainBreed = mainBreed
         self.subBreed = subBreed

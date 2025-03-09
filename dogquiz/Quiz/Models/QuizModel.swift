@@ -7,37 +7,39 @@
 import Foundation
 import SwiftUI
 import Collections
+import Kingfisher
 
 @Observable
 class QuizModel {
-    private let kMaxQuestions = 10
+    private let kMaxQuestionsCacheCount = 10
     private let client = NetworkClient.shared.client
     
     private var questionQueue = Deque<QuestionModel>()
     private let breedService = DogBreedService.shared
     private let imageService = DogImageService.shared
     
+    func load() async {
+        (_, _) = await (breedService.initBreeds(), loadQuestions())
+    }
+    
     
     
     func getNextQuestion() -> QuestionModel? {
-        return questionQueue.first
+        return questionQueue.popFirst()
     }
     
     func loadQuestions() async {
-        let dogImageUrls = await loadMultipleImages()
+        if kMaxQuestionsCacheCount - questionQueue.count == 0 {
+            return
+        }
+        let dogImageUrlStrings = await imageService.loadMultipleImages(count: kMaxQuestionsCacheCount - questionQueue.count)
+        let dogImageUrls = dogImageUrlStrings.compactMap { URL(string: $0) }
         dogImageUrls.forEach { url in
-            questionQueue.append(QuestionModel(dogImageUrl: url, alternateDogBreedSelections: []))
+            questionQueue.append(QuestionModel(dogImageUrl: url))
         }
         
+        ImagePrefetcher(urls: dogImageUrls).start()
+        
     }
-    func loadMultipleImages() async -> [String] {
-        if kMaxQuestions - questionQueue.count == 0 {
-            return []
-        }
-        return await imageService.loadMultipleImages(count: kMaxQuestions - questionQueue.count)
-    }
-    
-    
-    
 //    func
 }

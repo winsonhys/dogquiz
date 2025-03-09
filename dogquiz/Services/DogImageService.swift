@@ -8,9 +8,11 @@
 import Foundation
 
 
-class DogImageService {
-    static let shared = DogBreedService()
-    private init() {}
+final class DogImageService {
+    
+    private init() {
+    }
+    static let shared = DogImageService()
     
     private let client = NetworkClient.shared.client
     
