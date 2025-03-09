@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		92B9E8C02D79EE050017EDEE /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 92B9E8BF2D79EE050017EDEE /* Moya */; };
+		9264411F2D7D77AE00AB0A14 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 9264411E2D7D77AE00AB0A14 /* OpenAPIRuntime */; };
+		926441222D7D77CA00AB0A14 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = 926441212D7D77CA00AB0A14 /* OpenAPIURLSession */; };
+		926441472D7D8EC700AB0A14 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 926441462D7D8EC700AB0A14 /* Collections */; };
+		926441492D7D8EC700AB0A14 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 926441482D7D8EC700AB0A14 /* DequeModule */; };
 		92B9E8C32D79EE310017EDEE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 92B9E8C22D79EE310017EDEE /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -57,8 +60,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926441222D7D77CA00AB0A14 /* OpenAPIURLSession in Frameworks */,
 				92B9E8C32D79EE310017EDEE /* Kingfisher in Frameworks */,
-				92B9E8C02D79EE050017EDEE /* Moya in Frameworks */,
+				926441492D7D8EC700AB0A14 /* DequeModule in Frameworks */,
+				926441472D7D8EC700AB0A14 /* Collections in Frameworks */,
+				9264411F2D7D77AE00AB0A14 /* OpenAPIRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +85,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		926441172D7D772B00AB0A14 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		92B9E8872D79ECEC0017EDEE = {
 			isa = PBXGroup;
 			children = (
 				92B9E8922D79ECEC0017EDEE /* dogquiz */,
 				92B9E8A42D79ECED0017EDEE /* dogquizTests */,
 				92B9E8AE2D79ECED0017EDEE /* dogquizUITests */,
+				926441172D7D772B00AB0A14 /* Frameworks */,
 				92B9E8912D79ECEC0017EDEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,14 +127,18 @@
 			buildRules = (
 			);
 			dependencies = (
+				926441242D7D77E400AB0A14 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				92B9E8922D79ECEC0017EDEE /* dogquiz */,
 			);
 			name = dogquiz;
 			packageProductDependencies = (
-				92B9E8BF2D79EE050017EDEE /* Moya */,
 				92B9E8C22D79EE310017EDEE /* Kingfisher */,
+				9264411E2D7D77AE00AB0A14 /* OpenAPIRuntime */,
+				926441212D7D77CA00AB0A14 /* OpenAPIURLSession */,
+				926441462D7D8EC700AB0A14 /* Collections */,
+				926441482D7D8EC700AB0A14 /* DequeModule */,
 			);
 			productName = dogquiz;
 			productReference = 92B9E8902D79ECEC0017EDEE /* dogquiz.app */;
@@ -205,8 +223,11 @@
 			mainGroup = 92B9E8872D79ECEC0017EDEE;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				92B9E8BE2D79EE050017EDEE /* XCRemoteSwiftPackageReference "Moya" */,
 				92B9E8C12D79EE310017EDEE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9264411C2D7D777D00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */,
+				9264411D2D7D77AE00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
+				926441202D7D77CA00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
+				926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 92B9E8912D79ECEC0017EDEE /* Products */;
@@ -269,6 +290,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		926441242D7D77E400AB0A14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 926441232D7D77E400AB0A14 /* OpenAPIGenerator */;
+		};
 		92B9E8A32D79ECED0017EDEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 92B9E88F2D79ECEC0017EDEE /* dogquiz */;
@@ -598,12 +623,36 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		92B9E8BE2D79EE050017EDEE /* XCRemoteSwiftPackageReference "Moya" */ = {
+		9264411C2D7D777D00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya.git";
+			repositoryURL = "https://github.com/apple/swift-openapi-generator.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.3;
+				minimumVersion = 1.7.0;
+			};
+		};
+		9264411D2D7D77AE00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-runtime";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.0;
+			};
+		};
+		926441202D7D77CA00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-urlsession.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+		926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.4;
 			};
 		};
 		92B9E8C12D79EE310017EDEE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -617,10 +666,30 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		92B9E8BF2D79EE050017EDEE /* Moya */ = {
+		9264411E2D7D77AE00AB0A14 /* OpenAPIRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 92B9E8BE2D79EE050017EDEE /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
+			package = 9264411D2D7D77AE00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */;
+			productName = OpenAPIRuntime;
+		};
+		926441212D7D77CA00AB0A14 /* OpenAPIURLSession */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926441202D7D77CA00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */;
+			productName = OpenAPIURLSession;
+		};
+		926441232D7D77E400AB0A14 /* OpenAPIGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9264411C2D7D777D00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */;
+			productName = "plugin:OpenAPIGenerator";
+		};
+		926441462D7D8EC700AB0A14 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		926441482D7D8EC700AB0A14 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
 		};
 		92B9E8C22D79EE310017EDEE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import OpenAPIURLSession
 
 @main
 struct dogquizApp: App {
+    
+    
     var body: some Scene {
+        
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }
