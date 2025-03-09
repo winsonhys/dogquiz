@@ -25,7 +25,7 @@ struct Quiz: View {
             } else if let question = currentQuestion {
                 VStack {
                     Text("Current Score: \(currentScore)")
-                    Question(questionModel: Binding { question } set: { currentQuestion = $0 }, onCorrectAnswer: {
+                    Question(questionModel: question, onCorrectAnswer: {
                         currentScore += 1
                         let nextQuestion = model.getNextQuestion()
                         currentQuestion = nextQuestion

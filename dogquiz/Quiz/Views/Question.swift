@@ -10,13 +10,13 @@ import SwiftUI
 import Kingfisher
 
 struct Question : View {
-    @Binding private var questionModel: QuestionModel;
+    var questionModel: QuestionModel;
     
     var onCorrectAnswer: () -> Void
     var onWrongAnswer: () -> Void
     
-    init(questionModel: Binding<QuestionModel>, onCorrectAnswer: @escaping () -> Void, onWrongAnswer: @escaping () -> Void) {
-        self._questionModel = questionModel
+    init(questionModel: QuestionModel, onCorrectAnswer: @escaping () -> Void, onWrongAnswer: @escaping () -> Void) {
+        self.questionModel = questionModel
         self.onCorrectAnswer = onCorrectAnswer
         self.onWrongAnswer = onWrongAnswer
     }
