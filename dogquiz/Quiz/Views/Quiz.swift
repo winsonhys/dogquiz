@@ -6,8 +6,12 @@
 //
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct Quiz: View {
+    // For SwiftData
+    @Environment(\.modelContext) private var modelContext
+    
     @State private var model = QuizModel()
     @State private var isLoading = true
     
@@ -32,7 +36,15 @@ struct Quiz: View {
                 }
                 
             } else {
-                EmptyView()
+                Rectangle()
+                   .hidden()
+                   .onAppear {
+                       let score = Score(date: Date.now, score: currentScore)
+                       // To persist scores to see score history.
+                       modelContext.insert(score)
+                       try? modelContext.save()
+                       Router.shared.path.append(Router.Routes.history)
+                   }
             }
         }
     }

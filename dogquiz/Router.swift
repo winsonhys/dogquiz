@@ -18,6 +18,7 @@ class Router {
     private init() {}
     enum Routes {
         case quiz
+        case history
         
     }
     
@@ -25,7 +26,10 @@ class Router {
             switch route {
             case .quiz:
                 return AnyView(Quiz())
+            case .history:
+                return AnyView(History())
             }
+    
         }
 
 }

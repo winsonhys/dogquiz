@@ -10,10 +10,10 @@ import OpenAPIURLSession
 
 @main
 struct dogquizApp: App {
-    
+    @Environment(\.modelContext) private var modelContext
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView().modelContainer(for: [Score.self])
         }
     }
 }
