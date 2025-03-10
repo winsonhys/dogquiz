@@ -15,6 +15,8 @@ struct QuestionView : View {
     var onCorrectAnswer: () -> Void
     var onWrongAnswer: () -> Void
     
+    @State private var hasSelectedAnswer = false
+    
     init(questionModel: QuestionModel, onCorrectAnswer: @escaping () -> Void, onWrongAnswer: @escaping () -> Void) {
         self.questionModel = questionModel
         self.onCorrectAnswer = onCorrectAnswer
@@ -22,8 +24,8 @@ struct QuestionView : View {
     }
     
     private let flexibleColumn = [
-        GridItem(.flexible(minimum: 100, maximum: 200)),
-        GridItem(.flexible(minimum: 100, maximum: 200)),
+        GridItem(.fixed(170), spacing: 16),
+        GridItem(.fixed(170), spacing: 16)
     ]
     var body: some View {
         let answerSelections = questionModel.randomBreedOrder
@@ -32,15 +34,19 @@ struct QuestionView : View {
             Text("What is the correct breed?")
             LazyVGrid(columns: flexibleColumn, spacing: 20) {
                 ForEach(answerSelections) { answerSelection in
-                    AnswerButton(breed: answerSelection) { selectedBreed in
-                        if questionModel.isCorrectAnswer(selectedBreed: selectedBreed) {
+                    let isCorrectAnswer = questionModel.isCorrectAnswer(selectedBreed: answerSelection)
+                    AnswerButton(breed: answerSelection, hasSelectedAnswer: hasSelectedAnswer, isCorrectAnswer: isCorrectAnswer, onTap: {
+                        hasSelectedAnswer = true
+                    }) {
+                        if isCorrectAnswer {
                             onCorrectAnswer()
                         } else {
                             onWrongAnswer()
                         }
+                        hasSelectedAnswer = false
                     }
                 }
-            }
+            }.padding()
             
         }
     }
