@@ -14,7 +14,15 @@ class Utils {
         let breedComponents = breedPath.components(separatedBy: "/")
         guard breedComponents.count > 0 else { return Breed() }
         
-        return Breed(mainBreed: breedComponents[0])
+        let breedString = breedComponents[0]
+        
+        // Check if the breed string contains a hyphen (indicating a subbreed)
+        if breedString.contains("-") {
+            let breedParts = breedString.components(separatedBy: "-")
+            return Breed(mainBreed: breedParts[0], subBreed: breedParts[1])
+        } else {
+            return Breed(mainBreed: breedString)
+        }
     }
     static let backgroundColor = Color.init(hex: "#f9f3d9")
     
