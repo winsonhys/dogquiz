@@ -9,16 +9,12 @@ import SwiftUI
 
 
 
-struct HomeView: View {
+struct ContentView: View {
     @State private var router = Router.shared
 
     var body: some View {
         NavigationStack(path: $router.path) {
-            Button(action: {
-                router.path.append(Router.Routes.quiz)
-            }) {
-                Text("Start")
-            }.navigationDestination(for: Router.Routes.self) { route in
+            Start().navigationDestination(for: Router.Routes.self) { route in
                 Router.shared.viewForRoute(route)
             }
         }
@@ -27,5 +23,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    ContentView()
 }

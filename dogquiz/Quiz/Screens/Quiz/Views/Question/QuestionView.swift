@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Kingfisher
 
-struct Question : View {
+struct QuestionView : View {
     var questionModel: QuestionModel;
     
     var onCorrectAnswer: () -> Void
@@ -26,7 +26,7 @@ struct Question : View {
         GridItem(.flexible(minimum: 100, maximum: 200)),
     ]
     var body: some View {
-        let answerSelections = questionModel.getRandomBreedOrder()
+        let answerSelections = questionModel.randomBreedOrder
         return VStack {
             KFImage(questionModel.dogImageUrl).resizable().scaledToFit().padding([.leading, .trailing], 20).frame(maxHeight: 300)
             Text("What is the correct breed?")

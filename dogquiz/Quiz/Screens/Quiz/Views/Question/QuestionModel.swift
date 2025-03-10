@@ -13,6 +13,7 @@ struct QuestionModel {
     let dogImageUrl: URL
     let correctDogBreed: Breed
     let alternateDogBreedSelections: [Breed]
+    let randomBreedOrder: [Breed]
     
     init(dogImageUrl: URL) {
         self.dogImageUrl = dogImageUrl
@@ -21,17 +22,14 @@ struct QuestionModel {
         self.correctDogBreed = correctDogBreedFromUrl
         
         self.alternateDogBreedSelections = breedService.getRandomBreeds(count: 3, excludes: [self.correctDogBreed])
+        
+        self.randomBreedOrder = (alternateDogBreedSelections + [correctDogBreed]).shuffled()
     }
     
     func isCorrectAnswer(selectedBreed: Breed) -> Bool {
         return selectedBreed == correctDogBreed
     }
     
-    func getRandomBreedOrder() -> [Breed] {
-        var breeds = alternateDogBreedSelections + [correctDogBreed]
-        breeds.shuffle()
-        return breeds
-    }
     
     
     

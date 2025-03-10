@@ -25,12 +25,13 @@ class Router {
     func viewForRoute(_ route: Routes) -> AnyView {
             switch route {
             case .quiz:
-                return AnyView(Quiz())
+                return AnyView(QuizView())
             case .history:
                 return AnyView(History())
             }
     
-        }
+    }
+
 
 }
 

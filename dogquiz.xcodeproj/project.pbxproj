@@ -11,6 +11,7 @@
 		926441222D7D77CA00AB0A14 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = 926441212D7D77CA00AB0A14 /* OpenAPIURLSession */; };
 		926441472D7D8EC700AB0A14 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 926441462D7D8EC700AB0A14 /* Collections */; };
 		926441492D7D8EC700AB0A14 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 926441482D7D8EC700AB0A14 /* DequeModule */; };
+		9294F7332D7F2FCC00A7A353 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9294F7322D7F2FCC00A7A353 /* Lottie */; };
 		92B9E8C32D79EE310017EDEE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 92B9E8C22D79EE310017EDEE /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -38,11 +39,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		926441742D7DD8F800AB0A14 /* New Folder */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "New Folder";
-			sourceTree = "<group>";
-		};
 		92B9E8922D79ECEC0017EDEE /* dogquiz */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = dogquiz;
@@ -70,6 +66,7 @@
 				926441492D7D8EC700AB0A14 /* DequeModule in Frameworks */,
 				926441472D7D8EC700AB0A14 /* Collections in Frameworks */,
 				9264411F2D7D77AE00AB0A14 /* OpenAPIRuntime in Frameworks */,
+				9294F7332D7F2FCC00A7A353 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +97,6 @@
 		92B9E8872D79ECEC0017EDEE = {
 			isa = PBXGroup;
 			children = (
-				926441742D7DD8F800AB0A14 /* New Folder */,
 				92B9E8922D79ECEC0017EDEE /* dogquiz */,
 				92B9E8A42D79ECED0017EDEE /* dogquizTests */,
 				92B9E8AE2D79ECED0017EDEE /* dogquizUITests */,
@@ -136,7 +132,6 @@
 				926441242D7D77E400AB0A14 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				926441742D7DD8F800AB0A14 /* New Folder */,
 				92B9E8922D79ECEC0017EDEE /* dogquiz */,
 			);
 			name = dogquiz;
@@ -146,6 +141,7 @@
 				926441212D7D77CA00AB0A14 /* OpenAPIURLSession */,
 				926441462D7D8EC700AB0A14 /* Collections */,
 				926441482D7D8EC700AB0A14 /* DequeModule */,
+				9294F7322D7F2FCC00A7A353 /* Lottie */,
 			);
 			productName = dogquiz;
 			productReference = 92B9E8902D79ECEC0017EDEE /* dogquiz.app */;
@@ -235,6 +231,7 @@
 				9264411D2D7D77AE00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
 				926441202D7D77CA00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
 				926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				9294F7312D7F2FCC00A7A353 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 92B9E8912D79ECEC0017EDEE /* Products */;
@@ -662,6 +659,14 @@
 				minimumVersion = 1.1.4;
 			};
 		};
+		9294F7312D7F2FCC00A7A353 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
 		92B9E8C12D79EE310017EDEE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -697,6 +702,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = DequeModule;
+		};
+		9294F7322D7F2FCC00A7A353 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9294F7312D7F2FCC00A7A353 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 		92B9E8C22D79EE310017EDEE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

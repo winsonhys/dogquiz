@@ -13,7 +13,7 @@ struct dogquizApp: App {
     @Environment(\.modelContext) private var modelContext
     var body: some Scene {
         WindowGroup {
-            HomeView().modelContainer(for: [Score.self])
+            ContentView().modelContainer(for: [Score.self])
         }
     }
 }

@@ -18,10 +18,14 @@ struct AnswerButton : View {
     }
     
     var body: some View {
-        Button(action: {
+        var text = "Breed: \(breed.mainBreed)"
+        if breed.subBreed != "" {
+            text.append("\r\n Sub breed: \(breed.subBreed)")
+        }
+        return Button(action: {
             onTap(breed)
         }) {
-            Text("Breed: \(breed.mainBreed), Sub breed: \(breed.subBreed)")
+            Text(text)
         }
     
         
