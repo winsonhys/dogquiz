@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Flux_Dev_Create_a_visually_appealing_composition_featuring_a_b_2.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

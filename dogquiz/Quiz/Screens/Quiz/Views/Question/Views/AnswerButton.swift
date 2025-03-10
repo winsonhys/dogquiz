@@ -39,7 +39,7 @@ struct AnswerButton : View {
     var body: some View {
         var text = "Breed: \(breed.mainBreed)"
         if breed.subBreed != "" {
-            text.append("\r\n Sub breed: \(breed.subBreed)")
+            text.append("\r\n\r\nSub breed: \(breed.subBreed)")
         }
         // Changes tint based on the answer selected
         let buttonTint = {
@@ -55,10 +55,19 @@ struct AnswerButton : View {
         return ZStack {
             Button(action: {
                 onTap()
+                if isCorrectAnswer {
+                    startPlay = true
+                } else {
+                    // Delay this so that the green -> red animation can be played due to color interpolation animation
+                    Task {
+                        try await Task.sleep(nanoseconds: UInt64(1.5 * Double(NSEC_PER_SEC)))
+                        onAnimationEnd()
+                    }
+                    
+                }
                 
-                startPlay = true
             }) {
-                Text(text).padding().frame(maxWidth: .infinity, maxHeight: .infinity)
+                Text(text).frame(maxWidth: .infinity, maxHeight: .infinity)
                 
             }
             .buttonStyle(.borderedProminent)

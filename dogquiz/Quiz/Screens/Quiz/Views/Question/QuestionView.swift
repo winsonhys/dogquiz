@@ -31,7 +31,7 @@ struct QuestionView : View {
         let answerSelections = questionModel.randomBreedOrder
         return VStack {
             KFImage(questionModel.dogImageUrl).resizable().scaledToFit().padding([.leading, .trailing], 20).frame(maxHeight: 300)
-            Text("What is the correct breed?")
+            Text("What is the correct breed?").padding()
             LazyVGrid(columns: flexibleColumn, spacing: 20) {
                 ForEach(answerSelections) { answerSelection in
                     let isCorrectAnswer = questionModel.isCorrectAnswer(selectedBreed: answerSelection)

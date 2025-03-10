@@ -19,6 +19,7 @@ struct QuizView: View {
     
     @State private var currentQuestion: QuestionModel?
     @State private var currentScore = 0
+    @State private var questionsCompleted = 0;
     
     @Environment(\.dismiss) private var dismiss
     @State private var showExitConfirmation = false
@@ -28,14 +29,22 @@ struct QuizView: View {
     private func questionView(_ question: QuestionModel) -> some View {
         
         VStack {
-            Text("Current Score: \(currentScore)")
+            HStack {
+                Text("Current Score: \(currentScore)")
+                Spacer()
+                Text("Questions Left: \(QuizModel.kMaxQuestionsCount - questionsCompleted)")
+            }.padding([.leading, .trailing], 16)
+            
             QuestionView(questionModel: question, onCorrectAnswer: {
                 currentScore += 1
                 let nextQuestion = model.getNextQuestion()
                 currentQuestion = nextQuestion
+                questionsCompleted += 1
             }, onWrongAnswer: {
+                
                 let nextQuestion = model.getNextQuestion()
                 currentQuestion = nextQuestion
+                questionsCompleted += 1
             })
         }
     }
@@ -55,15 +64,23 @@ struct QuizView: View {
     }
     
     var mainBody: some View {
-        Group {
+        
+        return Group {
             if isLoading {
-                ProgressView()
-            } else if let question = currentQuestion {
+                VStack {
+                    ProgressView().scaledToFill()
+                }
+                
+            } else if questionsCompleted == QuizModel.kMaxQuestionsCount {
+                questionFinishedView
+            }
+            else if let question = currentQuestion {
                 questionView(question)
             } else {
                 questionFinishedView
             }
-        }.navigationBarBackButtonHidden(true).toolbar {
+        }.background(Utils.backgroundColor, ignoresSafeAreaEdges: .all)
+        .navigationBarBackButtonHidden(true).toolbar {
             if isLoading {
                 ToolbarItem {
                     Rectangle().hidden()

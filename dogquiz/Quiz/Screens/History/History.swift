@@ -12,15 +12,57 @@ struct History: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Score.date) var scores: [Score]
     
+    let dateFormatter = DateFormatter()
+    init() {
+        dateFormatter.dateFormat = "dd/MM/yy hh:mm a"
+    }
+    
     
     var body: some View {
-        VStack {
+        let maxScores = scores.filter { score in
+            score.score == QuizModel.kMaxQuestionsCount
+        }
+        return VStack {
             Text("Scores")
-            List(scores) {score in
-                Text("Score: \(score.score)")
-                Text("Date: \(score.date)")
-            }
-        }.navigationBarBackButtonHidden(true).toolbar {
+            
+                List {
+                    Section {
+                        if maxScores.isEmpty {
+                            Text("Good luck on obtaining full marks!")
+                        } else {
+                            ForEach(maxScores) { score in
+                                HStack {
+                                    Text("Score: \(score.score)")
+                                    Spacer()
+                                    Text("Date: \(dateFormatter.string(from: score.date))")
+                                }
+                            }
+                        }
+                        
+                    } header: {
+                        Text("Full marks go here~")
+                    }
+                    Section {
+                        ForEach(scores) { score in
+                            HStack {
+                                Text("Score: \(score.score)")
+                                Spacer()
+                                Text("Date: \(dateFormatter.string(from: score.date))")
+                            }
+                        }
+                    } header: {
+                        Text("Score history")
+                    }
+                }.background(Utils.backgroundColor).scrollContentBackground(.hidden)
+            
+
+        }.background(Utils.backgroundColor)
+        .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+            
+        })
+        
+        .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                         Button(action: {
                             // Reset to root. This works because this is the final destination screen.

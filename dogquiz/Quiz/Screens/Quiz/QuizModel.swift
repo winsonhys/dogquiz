@@ -12,6 +12,7 @@ import Kingfisher
 @Observable
 class QuizModel {
     private let kMaxQuestionsCacheCount = 10
+    static let kMaxQuestionsCount = 12 // Currently this is here because QuizModel is the base of this app. 
     private let client = NetworkClient.shared.client
     
     private var questionQueue = Deque<QuestionModel>()
@@ -25,6 +26,11 @@ class QuizModel {
     
     
     func getNextQuestion() -> QuestionModel? {
+        if kMaxQuestionsCacheCount - questionQueue.count < 5 {
+            Task {
+                await loadQuestions()
+            }
+        }
         return questionQueue.popFirst()
     }
     
