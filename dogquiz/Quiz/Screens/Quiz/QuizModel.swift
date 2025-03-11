@@ -13,7 +13,7 @@ import Dependencies
 @Observable
 class QuizModel {
     private let kMaxQuestionsCacheCount = 10
-    static let kMaxQuestionsCount = 12 // Currently this is here because QuizModel is the base of this app. 
+    static let kMaxQuestionsCount = 12 // Currently this is here because QuizModel is the base of this app. Might wanna place this constant elsewhere if needed.
     
     private(set) var questionQueue = Deque<QuestionModel>()
     @ObservationIgnored
@@ -28,7 +28,6 @@ class QuizModel {
     
     
     func getNextQuestion() -> QuestionModel? {
-        print("Load int \(kMaxQuestionsCacheCount - questionQueue.count)")
         if kMaxQuestionsCacheCount - questionQueue.count < 5 {
             Task {
                 await loadQuestions()
@@ -37,6 +36,7 @@ class QuizModel {
         return questionQueue.popFirst()
     }
     
+    // Exposed for testing.
     func loadQuestions() async {
         if kMaxQuestionsCacheCount - questionQueue.count <= 0 {
             return

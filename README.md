@@ -2,6 +2,10 @@
 
 DogQuiz is an iOS application that provides users with a fun and interactive way to learn about different dog breeds. The app fetches random dog breeds and images, allowing users to test their knowledge through quizzes.
 
+
+
+
+
 ## Architecture
 
 The DogQuiz app follows a modular architecture with a focus on separation of concerns. Here's a brief overview of the architecture:
@@ -20,6 +24,19 @@ The DogQuiz app follows a modular architecture with a focus on separation of con
 
 - **Quiz**: Contains the logic and UI components related to the quiz functionality.
 
+## Folder Structure
+
+Withn `Quiz` folder itself, there are several nested folders. These are explained below.
+
+- **Entities**: Contains SwiftData data models. Used to store score history
+  
+- **Screens**: Each subfolder's main file is a screen.
+  
+- **Views**: UI that's used to compose a `Screen`
+  
+- **Models**: Data models used in the app, but not to interface with SwiftData
+
+Dependencies are also implied from the folder structure. For example, since `QuizView` is dependent on `QuestionView`, `Question` is nested under `Quiz`
 
 ## Setup Instructions
 

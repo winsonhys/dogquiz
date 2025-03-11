@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import Kingfisher
-
+// Question View. Comprises of dog in question, and the 4 selection buttons.
 struct QuestionView : View, Identifiable {
     var id = UUID().uuidString
     
