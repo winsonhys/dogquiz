@@ -14,6 +14,7 @@
 		9281AEE42D7F75F300E1C4C2 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AEE32D7F75F300E1C4C2 /* ViewInspector */; };
 		9281AEFB2D80023100E1C4C2 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AEFA2D80023100E1C4C2 /* ViewInspector */; };
 		9281AF312D80670500E1C4C2 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AF302D80670500E1C4C2 /* Dependencies */; };
+		9281AF862D8087CA00E1C4C2 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AF852D8087CA00E1C4C2 /* Dependencies */; };
 		9294F7332D7F2FCC00A7A353 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9294F7322D7F2FCC00A7A353 /* Lottie */; };
 		92B9E8C32D79EE310017EDEE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 92B9E8C22D79EE310017EDEE /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9281AEE42D7F75F300E1C4C2 /* ViewInspector in Frameworks */,
+				9281AF862D8087CA00E1C4C2 /* Dependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +199,7 @@
 			name = dogquizUITests;
 			packageProductDependencies = (
 				9281AEE32D7F75F300E1C4C2 /* ViewInspector */,
+				9281AF852D8087CA00E1C4C2 /* Dependencies */,
 			);
 			productName = dogquizUITests;
 			productReference = 92B9E8AB2D79ECED0017EDEE /* dogquizUITests.xctest */;
@@ -741,6 +744,11 @@
 			productName = ViewInspector;
 		};
 		9281AF302D80670500E1C4C2 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9281AF2F2D80670500E1C4C2 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
+		};
+		9281AF852D8087CA00E1C4C2 /* Dependencies */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9281AF2F2D80670500E1C4C2 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
 			productName = Dependencies;

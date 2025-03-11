@@ -9,10 +9,14 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import Dependencies
 
 struct QuizView: View {
     // For SwiftData
     @Environment(\.modelContext) private var modelContext
+    
+    
+    @Dependency(\.date.now) var now
     
     @State private var model = QuizModel()
     @State var isLoading = true
@@ -55,7 +59,7 @@ struct QuizView: View {
         Rectangle()
            .hidden()
            .onAppear {
-               let score = Score(date: Date.now, score: currentScore)
+               let score = Score(date: now, score: currentScore)
                // To persist scores to see score history.
                modelContext.insert(score)
                try? modelContext.save()

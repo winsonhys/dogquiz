@@ -10,7 +10,7 @@ import SwiftData
 
 struct History: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Score.date) var scores: [Score]
+    @Query(sort: \Score.date, order: .reverse) var scores: [Score]
     
     let dateFormatter = DateFormatter()
     init() {
