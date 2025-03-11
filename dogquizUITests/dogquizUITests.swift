@@ -1,43 +1,133 @@
 //
-//  dogquizUITests.swift
+//  QuizUITests.swift
 //  dogquizUITests
 //
-//  Created by Winson Heng on 6/3/25.
+//  Created by AI Assistant on 9/3/25.
 //
 
 import XCTest
+import Dependencies
 
-final class dogquizUITests: XCTestCase {
-
+class DogQuizUITests: XCTestCase {
+    
+    let app: XCUIApplication = XCUIApplication()
+    
+    
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
+    
+    func testFullInteractionFullMarks() throws {
+        // Navigate to quiz screen
+        // Note: You'll need to modify this to match your app's navigation flow
+        app.buttons["Start"].tap()
+        
+        // Wait for the question to appear
+        let questionExists = app.staticTexts["What is the correct breed?"].waitForExistence(timeout: 2)
+        XCTAssertTrue(questionExists)
+        
+        
+        for i in 0..<12 {
+            // Find answer buttons
+            let answerButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed: hound'"))
+            
+            // Select correct answer
+            let firstAnswer = answerButtons.element(boundBy: 0)
+            let answerText = firstAnswer.label
+            firstAnswer.tap()
+            
+            let expectation = XCTestExpectation(description: "Wait for updated button to appear")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                expectation.fulfill()
             }
+            wait(for: [expectation], timeout: 3.5)
         }
+        
+        
+        
+        
+        
+        
+        let scoreSaved = app.staticTexts["Score: \(12)"].waitForExistence(timeout: 2)
+        XCTAssertTrue(scoreSaved)
+        
+        let noFullMarks = app.staticTexts["Good luck on obtaining full marks!"].waitForExistence(timeout: 2)
+        XCTAssertFalse(noFullMarks)
+        
+        
+        
     }
+    
+    func testFullInteractionNotFullMarks() throws {
+        // Navigate to quiz screen
+        // Note: You'll need to modify this to match your app's navigation flow
+        app.buttons["Start"].tap()
+        
+        // Wait for the question to appear
+        let questionExists = app.staticTexts["What is the correct breed?"].waitForExistence(timeout: 2)
+        XCTAssertTrue(questionExists)
+        
+        
+        for i in 0..<6 {
+            // Find answer buttons
+            let answerButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed: hound'"))
+            
+            // Select correct answer
+            let firstAnswer = answerButtons.element(boundBy: 0)
+            let answerText = firstAnswer.label
+            firstAnswer.tap()
+            
+            let expectation = XCTestExpectation(description: "Wait for updated button to appear")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 3.5)
+        }
+        
+        let currentScore = app.staticTexts["Current Score: 6"].waitForExistence(timeout: 2)
+        XCTAssertTrue(currentScore)
+        let questionsLeft = app.staticTexts["Questions Left: 6"].waitForExistence(timeout: 2)
+        XCTAssertTrue(questionsLeft)
+        // All Wrong selections
+        for i in 0..<5 {
+            // Find answer buttons
+            let answerButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed:' AND NOT (label CONTAINS[c] 'hound')"))
+            
+            // Select wrong
+            let firstAnswer = answerButtons.element(boundBy: 0)
+            let answerText = firstAnswer.label
+            firstAnswer.tap()
+            
+            let expectation = XCTestExpectation(description: "Wait for updated button to appear")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 3.5)
+        }
+        let currentScore2 = app.staticTexts["Current Score: 6"].waitForExistence(timeout: 2)
+        XCTAssertTrue(currentScore2)
+        let questionsLeft2 = app.staticTexts["Questions Left: 1"].waitForExistence(timeout: 2)
+        XCTAssertTrue(questionsLeft2)
+        
+        let answerButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed:' AND NOT (label CONTAINS[c] 'hound')"))
+        
+        // Select wrong
+        let firstAnswer = answerButtons.element(boundBy: 0)
+        let answerText = firstAnswer.label
+        firstAnswer.tap()
+        
+        
+        
+        let scoreSaved = app.staticTexts["Score: \(6)"].waitForExistence(timeout: 2)
+        XCTAssertTrue(scoreSaved)
+        
+        let noFullMarks = app.staticTexts["Good luck on obtaining full marks!"].waitForExistence(timeout: 2)
+        
+        
+        
+    }
+    
 }
