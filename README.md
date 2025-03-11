@@ -56,3 +56,6 @@ Q: Why did I use XCTest instead of Testing
 <br>
 A: Familarity.
 
+Q: Did I use AI?
+<br>
+A: Yes. I attempted it like an engineering project.
