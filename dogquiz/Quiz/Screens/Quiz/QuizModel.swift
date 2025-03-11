@@ -16,8 +16,8 @@ class QuizModel {
     private let client = NetworkClient.shared.client
     
     private var questionQueue = Deque<QuestionModel>()
-    private let breedService = DogBreedService.shared
-    private let imageService = DogImageService.shared
+    private let breedService: DogBreedService  = DogBreedServiceImpl.shared
+    private let imageService: DogImageService = DogImageServiceImpl.shared
     
     func load() async {
         (_, _) = await (breedService.initBreeds(), loadQuestions())

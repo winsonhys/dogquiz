@@ -8,7 +8,8 @@
 import Foundation
 
 
-final class DogImageService {
+
+class DogImageService {
     
     private init() {
     }
@@ -37,3 +38,4 @@ final class DogImageService {
         }
     }
 }
+

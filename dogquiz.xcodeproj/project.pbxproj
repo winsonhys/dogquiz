@@ -11,6 +11,8 @@
 		926441222D7D77CA00AB0A14 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = 926441212D7D77CA00AB0A14 /* OpenAPIURLSession */; };
 		926441472D7D8EC700AB0A14 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 926441462D7D8EC700AB0A14 /* Collections */; };
 		926441492D7D8EC700AB0A14 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 926441482D7D8EC700AB0A14 /* DequeModule */; };
+		9281AEE42D7F75F300E1C4C2 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AEE32D7F75F300E1C4C2 /* ViewInspector */; };
+		9281AEFB2D80023100E1C4C2 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AEFA2D80023100E1C4C2 /* ViewInspector */; };
 		9294F7332D7F2FCC00A7A353 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9294F7322D7F2FCC00A7A353 /* Lottie */; };
 		92B9E8C32D79EE310017EDEE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 92B9E8C22D79EE310017EDEE /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9281AEFB2D80023100E1C4C2 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9281AEE42D7F75F300E1C4C2 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +169,7 @@
 			);
 			name = dogquizTests;
 			packageProductDependencies = (
+				9281AEFA2D80023100E1C4C2 /* ViewInspector */,
 			);
 			productName = dogquizTests;
 			productReference = 92B9E8A12D79ECED0017EDEE /* dogquizTests.xctest */;
@@ -188,6 +193,7 @@
 			);
 			name = dogquizUITests;
 			packageProductDependencies = (
+				9281AEE32D7F75F300E1C4C2 /* ViewInspector */,
 			);
 			productName = dogquizUITests;
 			productReference = 92B9E8AB2D79ECED0017EDEE /* dogquizUITests.xctest */;
@@ -232,6 +238,7 @@
 				926441202D7D77CA00AB0A14 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
 				926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				9294F7312D7F2FCC00A7A353 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				9281AEE22D7F75F300E1C4C2 /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 92B9E8912D79ECEC0017EDEE /* Products */;
@@ -659,6 +666,14 @@
 				minimumVersion = 1.1.4;
 			};
 		};
+		9281AEE22D7F75F300E1C4C2 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
 		9294F7312D7F2FCC00A7A353 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
@@ -702,6 +717,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = DequeModule;
+		};
+		9281AEE32D7F75F300E1C4C2 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9281AEE22D7F75F300E1C4C2 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+		9281AEFA2D80023100E1C4C2 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9281AEE22D7F75F300E1C4C2 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
 		};
 		9294F7322D7F2FCC00A7A353 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

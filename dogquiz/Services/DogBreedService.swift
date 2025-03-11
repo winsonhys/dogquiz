@@ -8,7 +8,7 @@
 import Foundation
 
 
-class DogBreedService {
+class DogBreedService{
     
     static let shared = DogBreedService()
     var _allBreeds: [Breed] = []
@@ -43,7 +43,7 @@ class DogBreedService {
         _allBreeds = await loadAllBreeds()
     }
     
-    private func loadAllBreeds() async -> [Breed] {
+    func loadAllBreeds() async -> [Breed] {
         
         do {
             let response = try await client.listAllBreeds()
@@ -74,3 +74,4 @@ class DogBreedService {
         }.flatMap { $0 }
     }
 }
+
