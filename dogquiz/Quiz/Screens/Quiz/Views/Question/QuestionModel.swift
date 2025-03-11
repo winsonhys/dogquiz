@@ -6,22 +6,26 @@
 //
 import Foundation
 import SwiftUI
+import Dependencies
+import uuid
 
+struct QuestionModel: Identifiable {
+    var id = UUID().uuidString
+    
 
-struct QuestionModel {
-    private let breedService = DogBreedService.shared
+    @Dependency(DogBreedService.self) var breedService
+    
     let dogImageUrl: URL
     let correctDogBreed: Breed
-    let alternateDogBreedSelections: [Breed]
-    let randomBreedOrder: [Breed]
+    private(set) var  alternateDogBreedSelections: [Breed] = []
+    private(set) var  randomBreedOrder: [Breed] = []
     
     init(dogImageUrl: URL) {
         self.dogImageUrl = dogImageUrl
         
         let correctDogBreedFromUrl = Utils.getBreedFromImageUrlString(dogImageUrl.absoluteString)
         self.correctDogBreed = correctDogBreedFromUrl
-        
-        self.alternateDogBreedSelections = breedService.getRandomBreeds(count: 3, excludes: [self.correctDogBreed])
+        self.alternateDogBreedSelections = breedService.getRandomBreeds(count: 3, excludes: [correctDogBreedFromUrl])
         
         self.randomBreedOrder = (alternateDogBreedSelections + [correctDogBreed]).shuffled()
     }

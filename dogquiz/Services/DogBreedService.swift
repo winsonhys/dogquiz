@@ -6,14 +6,13 @@
 //
 
 import Foundation
-
+import Dependencies
 
 class DogBreedService{
     
     static let shared = DogBreedService()
     var _allBreeds: [Breed] = []
     
-    private init(){}
        
     private let client = NetworkClient.shared.client
     
@@ -73,5 +72,10 @@ class DogBreedService{
             
         }.flatMap { $0 }
     }
+}
+
+extension DogBreedService: TestDependencyKey {
+    static let liveValue = DogBreedService.shared
+    static let testValue = MockDogBreedService()
 }
 

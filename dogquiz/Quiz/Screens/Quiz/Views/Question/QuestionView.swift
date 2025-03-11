@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 import Kingfisher
 
-struct QuestionView : View {
+struct QuestionView : View, Identifiable {
+    var id = UUID().uuidString
+    
     var questionModel: QuestionModel;
     
     var onCorrectAnswer: () -> Void
@@ -44,7 +46,7 @@ struct QuestionView : View {
                             onWrongAnswer()
                         }
                         hasSelectedAnswer = false
-                    }
+                    }.id("\(answerSelection.id)-\(id)") // Tackle the edge case of the same breed-subbreed combi coming out twice in a row and causing states to be out of wack
                 }
             }.padding()
             

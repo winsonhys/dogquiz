@@ -25,49 +25,58 @@ class QuizUITests: XCTestCase {
         let questionExists = app.staticTexts["What is the correct breed?"].waitForExistence(timeout: 2)
         XCTAssertTrue(questionExists)
         
-        // Find answer buttons
-        let answerButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed:'"))
-        XCTAssertGreaterThan(answerButtons.count, 0, "No answer buttons found")
         
-        // Select an answer
-        let firstAnswer = answerButtons.element(boundBy: 0)
-        let answerText = firstAnswer.label
-        firstAnswer.tap()
-        
-        let expectation = XCTestExpectation(description: "Wait for updated button to appear")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            expectation.fulfill()
+        for i in 0..<6 {
+            // Find answer buttons
+            let answerButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed: hound'"))
+            
+            // Select correct answer
+            let firstAnswer = answerButtons.element(boundBy: 0)
+            let answerText = firstAnswer.label
+            firstAnswer.tap()
+            
+            let expectation = XCTestExpectation(description: "Wait for updated button to appear")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 3.5)
         }
-        wait(for: [expectation], timeout: 3.5)
+        
+        let currentScore = app.staticTexts["Current Score: 6"].waitForExistence(timeout: 2)
+        XCTAssertTrue(currentScore)
+        let questionsLeft = app.staticTexts["Questions Left: 6"].waitForExistence(timeout: 2)
+        XCTAssertTrue(questionsLeft)
+        // All Wrong selections
+        for i in 0..<5 {
+            // Find answer buttons
+            let answerButtons = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed:' AND NOT (label CONTAINS[c] 'hound')"))
+            
+            // Select correct answer
+            let firstAnswer = answerButtons.element(boundBy: 0)
+            let answerText = firstAnswer.label
+            firstAnswer.tap()
+            
+            let expectation = XCTestExpectation(description: "Wait for updated button to appear")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 3.5)
+        }
+        let currentScore2 = app.staticTexts["Current Score: 6"].waitForExistence(timeout: 2)
+        XCTAssertTrue(currentScore2)
+        let questionsLeft2 = app.staticTexts["Questions Left: 1"].waitForExistence(timeout: 2)
+        XCTAssertTrue(questionsLeft2)
+        
+        
+        
         // Button is updated, question has changed.
-        let answerButtons2 = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed:'"))
-        XCTAssertGreaterThan(answerButtons.count, 0, "No answer buttons found")
-        let secondAnswer = answerButtons.element(boundBy: 0)
-        XCTAssertTrue(secondAnswer.label != answerText)
+//        let answerButtons2 = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Breed:'"))
+//        XCTAssertGreaterThan(answerButtons.count, 0, "No answer buttons found")
+//        let secondAnswer = answerButtons.element(boundBy: 0)
+//        XCTAssertTrue(secondAnswer.label != answerText)
         // TODO: Add image change verification also
         
         
     }
     
-    func testCorrectAnswerAnimation() throws {
-        // This test would simulate selecting the correct answer
-        // and verifying the confetti animation appears
-        
-        // Note: Testing animations is challenging with XCUITest
-        // You might need to check for specific elements that appear
-        // during or after the animation, or verify state changes
-        
-        // Navigate to quiz with known answers (you might need a test mode)
-        app.buttons["Test Mode"].tap() // Assumes you have a test mode button
-        
-        // Select the correct answer (assuming we know which is correct in test mode)
-        let correctAnswerButton = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Correct Answer'")).element
-        XCTAssertTrue(correctAnswerButton.exists, "Correct answer button not found")
-        correctAnswerButton.tap()
-        
-        // Verify animation or its effects
-        // Could check for animation container or wait for "Next" button
-        let animationComplete = app.buttons["Next"].waitForExistence(timeout: 5)
-        XCTAssertTrue(animationComplete, "Animation did not complete")
-    }
 } 

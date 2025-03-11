@@ -13,6 +13,7 @@
 		926441492D7D8EC700AB0A14 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 926441482D7D8EC700AB0A14 /* DequeModule */; };
 		9281AEE42D7F75F300E1C4C2 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AEE32D7F75F300E1C4C2 /* ViewInspector */; };
 		9281AEFB2D80023100E1C4C2 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AEFA2D80023100E1C4C2 /* ViewInspector */; };
+		9281AF312D80670500E1C4C2 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 9281AF302D80670500E1C4C2 /* Dependencies */; };
 		9294F7332D7F2FCC00A7A353 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9294F7322D7F2FCC00A7A353 /* Lottie */; };
 		92B9E8C32D79EE310017EDEE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 92B9E8C22D79EE310017EDEE /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 				926441222D7D77CA00AB0A14 /* OpenAPIURLSession in Frameworks */,
 				92B9E8C32D79EE310017EDEE /* Kingfisher in Frameworks */,
 				926441492D7D8EC700AB0A14 /* DequeModule in Frameworks */,
+				9281AF312D80670500E1C4C2 /* Dependencies in Frameworks */,
 				926441472D7D8EC700AB0A14 /* Collections in Frameworks */,
 				9264411F2D7D77AE00AB0A14 /* OpenAPIRuntime in Frameworks */,
 				9294F7332D7F2FCC00A7A353 /* Lottie in Frameworks */,
@@ -146,6 +148,7 @@
 				926441462D7D8EC700AB0A14 /* Collections */,
 				926441482D7D8EC700AB0A14 /* DequeModule */,
 				9294F7322D7F2FCC00A7A353 /* Lottie */,
+				9281AF302D80670500E1C4C2 /* Dependencies */,
 			);
 			productName = dogquiz;
 			productReference = 92B9E8902D79ECEC0017EDEE /* dogquiz.app */;
@@ -239,6 +242,7 @@
 				926441452D7D8EC700AB0A14 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				9294F7312D7F2FCC00A7A353 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				9281AEE22D7F75F300E1C4C2 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+				9281AF2F2D80670500E1C4C2 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 92B9E8912D79ECEC0017EDEE /* Products */;
@@ -674,6 +678,14 @@
 				minimumVersion = 0.10.1;
 			};
 		};
+		9281AF2F2D80670500E1C4C2 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-dependencies.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.1;
+			};
+		};
 		9294F7312D7F2FCC00A7A353 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
@@ -727,6 +739,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9281AEE22D7F75F300E1C4C2 /* XCRemoteSwiftPackageReference "ViewInspector" */;
 			productName = ViewInspector;
+		};
+		9281AF302D80670500E1C4C2 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9281AF2F2D80670500E1C4C2 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
 		};
 		9294F7322D7F2FCC00A7A353 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

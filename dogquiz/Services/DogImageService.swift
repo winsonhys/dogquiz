@@ -6,13 +6,13 @@
 //
 
 import Foundation
+import Dependencies
 
 
 
 class DogImageService {
     
-    private init() {
-    }
+    
     static let shared = DogImageService()
     
     private let client = NetworkClient.shared.client
@@ -38,4 +38,10 @@ class DogImageService {
         }
     }
 }
+
+extension DogImageService: TestDependencyKey {
+    static let liveValue = DogImageService.shared
+    static let testValue = MockDogImageService()
+}
+
 

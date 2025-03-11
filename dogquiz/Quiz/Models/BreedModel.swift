@@ -9,7 +9,7 @@ struct Breed: Equatable, Hashable, Identifiable {
     let mainBreed: String
     let subBreed: String
     
-    // I can do this because this combination is unique.
+    
     var id: String { "\(mainBreed)-\(subBreed)" }
     
     

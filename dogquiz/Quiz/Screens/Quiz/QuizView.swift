@@ -15,11 +15,11 @@ struct QuizView: View {
     @Environment(\.modelContext) private var modelContext
     
     @State private var model = QuizModel()
-    @State private var isLoading = true
+    @State var isLoading = true
     
-    @State private var currentQuestion: QuestionModel?
-    @State private var currentScore = 0
-    @State private var questionsCompleted = 0;
+    @State  var currentQuestion: QuestionModel?
+    @State  var currentScore = 0
+    @State  var questionsCompleted = 0;
     
     @Environment(\.dismiss) private var dismiss
     @State private var showExitConfirmation = false
@@ -65,7 +65,7 @@ struct QuizView: View {
     
     var mainBody: some View {
         
-        return Group {
+        Group {
             if isLoading {
                 VStack {
                     ProgressView().scaledToFill()

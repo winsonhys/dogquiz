@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Lottie
+import uuid
 
 struct AnswerButton : View {
     private let breed: Breed
@@ -77,7 +78,7 @@ struct AnswerButton : View {
             .allowsHitTesting(!hasSelectedAnswer) // Prevent doubletap
             if startPlay {
                 LottieView(animation: .named("Lottie_Confetti.json"))
-                    .playing(loopMode: .playOnce).animationDidFinish { _ in
+                    .playing(loopMode: .playOnce).animationDidFinish { completion in
                         onAnimationEnd()
                     }
                     
